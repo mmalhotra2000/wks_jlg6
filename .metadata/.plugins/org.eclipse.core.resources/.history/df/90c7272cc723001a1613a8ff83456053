@@ -1,0 +1,10 @@
+package com.example.demowebservice1jlg6;
+
+public class FirstRESTService {
+	
+	
+	public String hello() {
+		return "hello shubham";
+	}
+
+}

@@ -1,0 +1,14 @@
+package com.example.demowebservice1jlg6;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+public class MyResponseEnttityExpHandler extends ResponseEntityExceptionHandler {
+
+	public final ResponseEntity<Object> handleUserNotFoundException(Exception ex, WebRequest request) throws Exception {
+		
+		
+
+	}
+}

@@ -1,0 +1,6 @@
+server.port =  7000
+
+logging.level.org.springframework = debug
+
+spring.jpa.show-sql= true
+spring.h2.console.enabled= true

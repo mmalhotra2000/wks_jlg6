@@ -1,0 +1,15 @@
+package com.example.demowebservice1jlg6;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class FirstRESTService {
+	
+	
+	@GetMapping(path="/hello")
+	public String hello() {
+		return "hello shubham";
+	}
+
+}

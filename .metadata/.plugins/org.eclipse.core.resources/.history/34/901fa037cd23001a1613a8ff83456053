@@ -1,0 +1,38 @@
+package com.example.demowebservice1jlg6;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class FirstRESTService {
+	
+	@Autowired
+	private EmployeeRepository employeeRepository;
+
+	@GetMapping(path = "/hello")
+	public String hello() {
+		return "hello shubham";
+	}
+
+	@GetMapping(path = "/emp")
+	public Employee getEmp() {
+		return new Employee("mphit", "malhotra");
+	}
+
+	
+	@GetMapping(path = "/emps")
+	public List<Employee> getAllEmps() {
+		return employeeRepository.findAll();
+	}
+	
+	
+	@PostMapping(path="/createemp")
+	public void createEmp(@RequestBody Employee employee) {
+		employeeRepository.save(employee);
+	}
+}
