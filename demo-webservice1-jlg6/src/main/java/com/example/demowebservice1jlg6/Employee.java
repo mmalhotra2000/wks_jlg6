@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Employee {
@@ -12,8 +15,10 @@ public class Employee {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
+	@Size(min=3, message="fname should of min 3 chars")
 	private String fName;
 
+	@JsonIgnore
 	private String lName;
 
 	public Employee() {

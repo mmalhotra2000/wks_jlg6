@@ -1,9 +1,17 @@
 package com.example.demowebservice1jlg6;
 
+//import static org.springframework.hateoas.server.mvc.ControllerLinkBuilder.linkTo;
+//import static org.springframework.hateoas.server.mvc.ControllerLinkBuilder.methodOn;
+
 import java.net.URI;
 import java.util.List;
+import java.util.Locale;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+//import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,10 +28,13 @@ public class FirstRESTService {
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+	private MessageSource messageSource;
 
 	@GetMapping(path = "/hello")
-	public String hello() {
-		return "hello shubham";
+	public String hello(Locale locale) {
+		return messageSource.getMessage("hello", null,locale);
 	}
 
 	@GetMapping(path = "/emp")
@@ -37,7 +48,7 @@ public class FirstRESTService {
 	}
 
 	@PostMapping(path = "/createemp")
-	public void createEmp(@RequestBody Employee employee) {
+	public void createEmp(@Valid @RequestBody Employee employee) {
 		employeeRepository.save(employee);
 	}
 
@@ -51,10 +62,17 @@ public class FirstRESTService {
 
 	}
 
-	@GetMapping(path = "/empsss")
-	public Employee getEmpByIdWithReqParam(@RequestParam("id") Long id) {
-		return employeeRepository.findById(id).get();
-	}
+//	@GetMapping(path = "/empsss")
+//	public EntityModel getEmpByIdWithReqParam(@RequestParam("id") Long id) {
+//
+//		EntityModel<Employee> entityModel = new EntityModel<Employee>(employeeRepository.findById(id).get());
+//
+//		entityModel.add(linkTo(methodOn(this.getClass()).getAllEmps()).withRel("all-emps"));
+//		
+//		entityModel.add(linkTo(methodOn(this.getClass()).getEmpById(1l)).withRel("get-emp1"));
+//
+//		return entityModel;
+//	}
 
 	@PostMapping(path = "/v2/createemp")
 	public ResponseEntity<Object> createEmpV2(@RequestBody Employee employee) {
